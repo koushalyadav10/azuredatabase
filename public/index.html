@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+</head>
+<body>
+    <h2>Add Student</h2>
+
+    <input id="id" placeholder="ID"><br>
+    <input id="name" placeholder="Name"><br>
+    <input id="marks" placeholder="Marks"><br>
+
+    <button onclick="submitData()">Submit</button>
+
+    <script>
+        function submitData() {
+            fetch('/addStudent', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: document.getElementById('id').value,
+                    name: document.getElementById('name').value,
+                    marks: document.getElementById('marks').value
+                })
+            }).then(res => res.text())
+              .then(data => alert(data));
+        }
+    </script>
+</body>
+</html>
